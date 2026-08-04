@@ -1,58 +1,147 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<a id="readme-top"></a>
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+<h1 align="center">KanbanGo (Backend)</h1>
 
-## About Laravel
+  <p align="center">
+    Project and task management application with collaborative features.
+    <br />
+  </p>
+</div>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<!-- ABOUT THE PROJECT -->
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## About The Project
 
-## Learning Laravel
+This is the backend part of my full stack project KanbanGo. It is an application for managing projects boards and tasks on them, with the additional option of working in collaboration with other board members.
+I started this project because I wanted to go through the full process of building everything myself, in this part I'm attempting to create clean RESTful APIs that I can then connect to the frontend.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Built With
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- [![Laravel][Laravel.com]][Laravel-url]
+- [![Postman][Postman.com]][Postman-url]
 
-## Agentic Development
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+<!-- GETTING STARTED -->
 
-```bash
-composer require laravel/boost --dev
+## Getting Started
 
-php artisan boost:install
-```
+Here you find the instructions on how to set up the project locally.
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Prerequisites
 
-## Contributing
+Make sure you have the following installed:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- [Laravel 13](https://laravel.com/docs/13.x/installation)
 
-## Code of Conduct
+### Installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Clone the repo (or download the project as a zip file)
+   ```sh
+   git clone https://github.com/alexS317/kanbango-backend.git
+   cd kanbango-backend
+   ```
+2. Install composer dependencies
+   ```sh
+   composer install
+   ```
+3. Copy the .env.example file and generate an application key
+   ```sh
+   php artisan key:generate
+   ```
+4. Configure your local .env file (database, mail, etc.)
+   
+5. Run migrations
+   ```sh
+   php artisan migrate
+   ```
+6. Start the development server
+   ```sh
+   php artisan serve
+   ```
 
-## Security Vulnerabilities
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<!-- USAGE EXAMPLES -->
 
-## License
+## Usage
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The project is a pure backend API and none of the frontend features included in Laravel (such as Blade templates) are used here. To test the API endpoints, a tool like Postman can be used. In this way you can for example register (which will at the current state of the project also log the user in at the same time), log in, or log out (for this step you have to copy the access token received during register/login and add it to the authorization header):
+
+<div align="center">
+  <img width="30%" src="_readme-screenshots/kanbango-be-1.webp" />
+  <img width="30%" src="_readme-screenshots/kanbango-be-2.webp" />
+  <img width="30%" src="_readme-screenshots/kanbango-be-3.webp" />
+</div>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ROADMAP -->
+
+## Roadmap
+
+- [x] Add basic user authentication
+- [ ] Create/edit/delete boards
+- [ ] Create/edit/delete tasks
+- [ ] Add collaboration features
+  - [ ] Invite users to boards via email
+  - [ ] Manage member roles
+  - [ ] Implement notifications (task assignment, status change of assigned task, etc.)
+- [ ] Improve authentication (email verification when signing up, password resetting)
+- [ ] Add extra user profile customisation features (profile picture etc.)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- ACKNOWLEDGMENTS -->
+
+## Acknowledgments
+
+- Based on [Best README Template](https://github.com/othneildrew/Best-README-Template)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+
+<!-- Shields.io badges. You can a comprehensive list with many more badges at: https://github.com/inttter/md-badges -->
+
+[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel-url]: https://laravel.com/
+[Postman.com]: https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white
+[Postman-url]: https://www.postman.com/
