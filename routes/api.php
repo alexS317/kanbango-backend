@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Auth\AuthController as V1AuthController;
+use App\Http\Controllers\Api\V1\BoardController as V1BoardController;
 use Illuminate\Support\Facades\Route;
 
 // API V1
@@ -18,5 +19,9 @@ Route::prefix('v1')->group(function () {
 
             Route::get('/user', [V1AuthController::class, 'user'])->name('user');
         });
+    });
+
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::apiResource('boards', V1BoardController::class);
     });
 });
