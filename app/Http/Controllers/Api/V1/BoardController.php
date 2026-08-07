@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Enums\BoardMemberRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BoardRequest;
 use App\Http\Resources\BoardResource;
@@ -18,6 +19,8 @@ class BoardController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Board::class);
+
         $boards = request()->user()->boards()->get();
 
         return BoardResource::collection($boards);
@@ -28,6 +31,8 @@ class BoardController extends Controller
      */
     public function store(BoardRequest $request)
     {
+        $this->authorize('create', Board::class);
+
         $validated = $request->validated();
 
         $board = Board::create([
@@ -36,7 +41,7 @@ class BoardController extends Controller
         BoardMember::create([
             'board_id' => $board->id,
             'user_id' => $request->user()->id,
-            'role' => 'owner',
+            'role' => BoardMemberRole::OWNER,
         ]);
 
         return new BoardResource($board);

@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Enums\BoardMemberRole;
 use App\Models\Board;
 use App\Models\User;
 
@@ -20,7 +21,7 @@ class BoardPolicy
      */
     public function view(User $user, Board $board): bool
     {
-        return $board->users()->where('user_id', $user->id)->exists();
+        return $board->members()->where('user_id', $user->id)->exists();
     }
 
     /**
@@ -36,7 +37,10 @@ class BoardPolicy
      */
     public function update(User $user, Board $board): bool
     {
-        return $board->users()->where('user_id', $user->id)->where('role', 'owner')->exists();
+        return $board->users()->where([
+            'user_id' => $user->id,
+            'role' => BoardMemberRole::OWNER,
+        ])->exists();
     }
 
     /**
@@ -44,7 +48,10 @@ class BoardPolicy
      */
     public function delete(User $user, Board $board): bool
     {
-        return $board->users()->where('user_id', $user->id)->where('role', 'owner')->exists();
+        return $board->users()->where([
+            'user_id' => $user->id,
+            'role' => BoardMemberRole::OWNER,
+        ])->exists();
     }
 
     /**

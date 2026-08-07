@@ -17,7 +17,7 @@ class BoardResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'members' => BoardMemberResource::collection($this->users),
+            'members' => BoardMemberResource::collection($this->members),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->enum('role', ['owner', 'admin', 'editor', 'viewer']);
             $table->timestamps();
+            $table->unique(['board_id', 'user_id']);
         });
     }
 

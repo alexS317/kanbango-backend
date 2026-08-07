@@ -15,11 +15,11 @@ class BoardMemberResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->pivot->id,
-            'user' => new UserResource($this->resource),
-            'role' => $this->pivot->role,
-            'created_at' => $this->pivot->created_at,
-            'updated_at' => $this->pivot->updated_at,
+            'id' => $this->id,
+            'role' => $this->role,
+            'user' => new UserResource($this->user),
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }
