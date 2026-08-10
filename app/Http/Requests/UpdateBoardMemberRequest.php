@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
 
-class BoardMemberRequest extends FormRequest
+class UpdateBoardMemberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class BoardMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'int',
             'role' => ['required', new Enum(BoardMemberRole::class)],
         ];
     }

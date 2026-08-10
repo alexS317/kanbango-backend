@@ -109,6 +109,11 @@ The project is a pure backend API and none of the frontend features included in 
   <img width="30%" src="_readme-screenshots/kanbango-be-3.webp" />
 </div>
 
+You can also seed the database to generate some pre-made entries to play around with. The following command will per default generate 5 users who may own one or more boards, and randomly assign them as members on other boards as well:
+```sh
+   php artisan db:seed
+```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
@@ -116,11 +121,11 @@ The project is a pure backend API and none of the frontend features included in 
 ## Roadmap
 
 - [x] Add basic user authentication
-- [ ] Create/edit/delete boards
+- [x] Create/edit/delete boards
 - [ ] Create/edit/delete tasks
 - [ ] Add collaboration features
   - [ ] Invite users to boards via email
-  - [ ] Manage member roles
+  - [x] Manage member roles
   - [ ] Implement notifications (task assignment, status change of assigned task, etc.)
 - [ ] Improve authentication (email verification when signing up, password resetting)
 - [ ] Add extra user profile customisation features (profile picture etc.)

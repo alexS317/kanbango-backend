@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Enums\BoardMemberRole;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\BoardMemberRequest;
+use App\Http\Requests\UpdateBoardMemberRequest;
 use App\Http\Resources\BoardMemberResource;
 use App\Models\Board;
 use App\Models\BoardMember;
@@ -27,24 +26,6 @@ class BoardMemberController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(BoardMemberRequest $request, Board $board)
-    {
-        $this->authorize('create', [BoardMember::class, $board]);
-
-        $validated = $request->validated();
-
-        $member = BoardMember::create([
-            'board_id' => $board->id,
-            'user_id' => $validated['user_id'],
-            'role' => $validated['role'],
-        ]);
-
-        return new BoardMemberResource($member);
-    }
-
-    /**
      * Display the specified resource.
      */
     public function show(Board $board, BoardMember $member)
@@ -57,7 +38,7 @@ class BoardMemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Board $board, BoardMemberRequest $request, BoardMember $member)
+    public function update(Board $board, UpdateBoardMemberRequest $request, BoardMember $member)
     {
         $this->authorize('update', $member);
 
