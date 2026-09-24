@@ -27,6 +27,7 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('boards', V1BoardController::class);
         Route::apiResource('boards.members', V1BoardMemberController::class)->except(['store']);
+        Route::patch('/boards/{board}/members/{member}/transfer-ownerrole', [V1BoardMemberController::class, 'transferOwnerRole'])->name('boards.members.transfer-ownerrole');
         Route::apiResource('boards.categories', V1BoardCategoryController::class);
         Route::patch('/boards/{board}/categories/{category}/reorder', [V1BoardCategoryController::class, 'reorder'])->name('boards.categories.reorder');
 

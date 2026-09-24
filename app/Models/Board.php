@@ -30,7 +30,7 @@ class Board extends Model
         return $this->hasMany(BoardCategory::class);
     }
 
-    public function memberHasRole(User $user, array $roles): bool
+    public function userHasRole(User $user, array $roles): bool
     {
         return $this->members()->where('user_id', $user->id)->whereIn('role', $roles)->exists();
     }

@@ -37,7 +37,7 @@ class BoardPolicy
      */
     public function update(User $user, Board $board): bool
     {
-        return $board->memberHasRole($user, [BoardMemberRole::OWNER]);
+        return $board->userHasRole($user, [BoardMemberRole::OWNER]);
     }
 
     /**
@@ -45,7 +45,7 @@ class BoardPolicy
      */
     public function delete(User $user, Board $board): bool
     {
-        return $board->memberHasRole($user, [BoardMemberRole::OWNER]);
+        return $board->userHasRole($user, [BoardMemberRole::OWNER]);
     }
 
     /**

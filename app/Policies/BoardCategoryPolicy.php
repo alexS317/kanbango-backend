@@ -30,7 +30,7 @@ class BoardCategoryPolicy
      */
     public function create(User $user, Board $board): bool
     {
-        return $board->memberHasRole($user, [BoardMemberRole::OWNER]);
+        return $board->userHasRole($user, [BoardMemberRole::OWNER]);
     }
 
     /**
@@ -38,7 +38,7 @@ class BoardCategoryPolicy
      */
     public function update(User $user, BoardCategory $boardCategory): bool
     {
-        return $boardCategory->board->memberHasRole($user, [BoardMemberRole::OWNER]);
+        return $boardCategory->board->userHasRole($user, [BoardMemberRole::OWNER]);
     }
 
     /**
@@ -46,7 +46,7 @@ class BoardCategoryPolicy
      */
     public function delete(User $user, BoardCategory $boardCategory): bool
     {
-        return $boardCategory->board->memberHasRole($user, [BoardMemberRole::OWNER]);
+        return $boardCategory->board->userHasRole($user, [BoardMemberRole::OWNER]);
     }
 
     /**

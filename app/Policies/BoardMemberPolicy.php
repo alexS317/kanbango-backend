@@ -30,7 +30,7 @@ class BoardMemberPolicy
      */
     public function create(User $user, Board $board): bool
     {
-        return $board->memberHasRole($user, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN]);
+        return $board->userHasRole($user, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN]);
     }
 
     /**
@@ -38,7 +38,12 @@ class BoardMemberPolicy
      */
     public function update(User $user, BoardMember $boardMember): bool
     {
-        return $boardMember->board->memberHasRole($user, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN]);
+        // Owner cannot assign themselves a different role
+        if ($user->id === $boardMember->user_id) {
+            return $boardMember->role !== BoardMemberRole::OWNER;
+        }
+
+        return $boardMember->board->userHasRole($user, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN]);
     }
 
     /**
@@ -51,7 +56,7 @@ class BoardMemberPolicy
             return $boardMember->role !== BoardMemberRole::OWNER;
         }
 
-        return $boardMember->board->memberHasRole($user, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN])
+        return $boardMember->board->userHasRole($user, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN])
             && $boardMember->role !== BoardMemberRole::OWNER;
     }
 
@@ -69,5 +74,10 @@ class BoardMemberPolicy
     public function forceDelete(User $user, BoardMember $boardMember): bool
     {
         return false;
+    }
+
+    public function transfer(User $user, BoardMember $boardMember): bool
+    {
+        return $boardMember->board->userHasRole($user, [BoardMemberRole::OWNER]);
     }
 }

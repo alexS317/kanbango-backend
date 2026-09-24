@@ -111,7 +111,6 @@ class BoardCategoryController extends Controller
 
             // Temporarily move item out of the way to not trigger unique constraint
             $category->update(['position' => PHP_INT_MIN]);
-            // echo $category->position;
 
             // Move position up
             if ($newPosition > $oldPosition) {
