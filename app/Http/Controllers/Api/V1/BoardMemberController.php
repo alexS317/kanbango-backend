@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateBoardMemberRequest;
+use App\Http\Requests\BoardMember\UpdateBoardMemberRequest;
 use App\Http\Resources\BoardMemberResource;
 use App\Models\Board;
 use App\Models\BoardMember;

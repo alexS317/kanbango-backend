@@ -24,4 +24,14 @@ class Board extends Model
     {
         return $this->hasMany(BoardMember::class);
     }
+
+    public function categories(): HasMany
+    {
+        return $this->hasMany(BoardCategory::class);
+    }
+
+    public function memberHasRole(User $user, array $roles): bool
+    {
+        return $this->members()->where('user_id', $user->id)->whereIn('role', $roles)->exists();
+    }
 }

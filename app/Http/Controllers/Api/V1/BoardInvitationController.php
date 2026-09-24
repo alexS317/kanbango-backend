@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\InviteBoardMemberRequest;
+use App\Http\Requests\BoardMember\InviteBoardMemberRequest;
 use App\Http\Resources\BoardInvitationResource;
 use App\Http\Resources\BoardMemberResource;
 use App\Mail\InviteToBoard;
@@ -13,6 +13,7 @@ use App\Models\BoardMember;
 use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -57,14 +58,16 @@ class BoardInvitationController extends Controller
         }
 
         // Return the BoardMember unchanged if it already exists, only create a new one if it doesn't
-        $member = BoardMember::firstOrCreate([
-            'board_id' => $invitation->board_id,
-            'user_id' => $request->user()->id,
-        ],
-            ['role' => $invitation->role],
-        );
+        $member = DB::transaction(function () use ($request, $invitation) {
+            BoardMember::firstOrCreate([
+                'board_id' => $invitation->board_id,
+                'user_id' => $request->user()->id,
+            ],
+                ['role' => $invitation->role],
+            );
 
-        $invitation->delete();
+            $invitation->delete();
+        });
 
         return new BoardMemberResource($member);
     }

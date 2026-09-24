@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BoardResource extends JsonResource
+class BoardCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,8 @@ class BoardResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'role' => $this->members()->where('user_id', $request->user()->id)->first()->role,
+            'name' => $this->name,
+            'position' => $this->position,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

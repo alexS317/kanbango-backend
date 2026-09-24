@@ -122,9 +122,10 @@ You can also seed the database to generate some pre-made entries to play around 
 
 - [x] Add basic user authentication
 - [x] Create/edit/delete boards
+  - [x] Implement customizable board categories
 - [ ] Create/edit/delete tasks
 - [ ] Add collaboration features
-  - [ ] Invite users to boards via email
+  - [x] Invite users to boards via email
   - [x] Manage member roles
   - [ ] Implement notifications (task assignment, status change of assigned task, etc.)
 - [ ] Improve authentication (email verification when signing up, password resetting)

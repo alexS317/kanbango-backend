@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\BoardMember;
 
 use App\Enums\BoardMemberRole;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
+use Illuminate\Validation\Rule;
 
 class InviteBoardMemberRequest extends FormRequest
 {
@@ -26,7 +26,7 @@ class InviteBoardMemberRequest extends FormRequest
     {
         return [
             'email' => 'required|string|email|max:255',
-            'role' => ['required', new Enum(BoardMemberRole::class)],
+            'role' => ['required', Rule::enum(BoardMemberRole::class), Rule::notIn([BoardMemberRole::OWNER])],
         ];
     }
 }

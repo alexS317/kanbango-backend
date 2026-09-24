@@ -30,7 +30,7 @@ class BoardMemberPolicy
      */
     public function create(User $user, Board $board): bool
     {
-        return $this->hasRole($user, $board, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN]);
+        return $board->memberHasRole($user, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN]);
     }
 
     /**
@@ -38,7 +38,7 @@ class BoardMemberPolicy
      */
     public function update(User $user, BoardMember $boardMember): bool
     {
-        return $this->hasRole($user, $boardMember->board, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN]);
+        return $boardMember->board->memberHasRole($user, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN]);
     }
 
     /**
@@ -46,12 +46,12 @@ class BoardMemberPolicy
      */
     public function delete(User $user, BoardMember $boardMember): bool
     {
-        // Users can always remove themselves from the board
+        // Users can always remove themselves from the board (except when they are the owner)
         if ($user->id === $boardMember->user_id) {
             return $boardMember->role !== BoardMemberRole::OWNER;
         }
 
-        return $this->hasRole($user, $boardMember->board, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN])
+        return $boardMember->board->memberHasRole($user, [BoardMemberRole::OWNER, BoardMemberRole::ADMIN])
             && $boardMember->role !== BoardMemberRole::OWNER;
     }
 
@@ -69,10 +69,5 @@ class BoardMemberPolicy
     public function forceDelete(User $user, BoardMember $boardMember): bool
     {
         return false;
-    }
-
-    private function hasRole(User $user, Board $board, array $roles): bool
-    {
-        return $board->members()->where('user_id', $user->id)->whereIn('role', $roles)->exists();
     }
 }

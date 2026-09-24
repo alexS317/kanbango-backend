@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Auth\AuthController as V1AuthController;
+use App\Http\Controllers\Api\V1\BoardCategoryController as V1BoardCategoryController;
 use App\Http\Controllers\Api\V1\BoardController as V1BoardController;
 use App\Http\Controllers\Api\V1\BoardInvitationController as V1BoardInvitationController;
 use App\Http\Controllers\Api\V1\BoardMemberController as V1BoardMemberController;
@@ -26,9 +27,11 @@ Route::prefix('v1')->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('boards', V1BoardController::class);
         Route::apiResource('boards.members', V1BoardMemberController::class)->except(['store']);
+        Route::apiResource('boards.categories', V1BoardCategoryController::class);
+        Route::patch('/boards/{board}/categories/{category}/reorder', [V1BoardCategoryController::class, 'reorder'])->name('boards.categories.reorder');
 
         // Board member invitation routes
-        Route::post('/boards/{board}/invitations', [V1BoardInvitationController::class, 'invite'])->name('invitations.invite');
+        Route::post('/boards/{board}/invite', [V1BoardInvitationController::class, 'invite'])->name('invitations.invite');
         Route::post('/invitations/{token}/accept', [V1BoardInvitationController::class, 'accept'])->name('invitations.accept');
     });
 });

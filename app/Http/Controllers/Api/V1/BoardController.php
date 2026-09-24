@@ -7,8 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BoardRequest;
 use App\Http\Resources\BoardResource;
 use App\Models\Board;
+use App\Models\BoardCategory;
 use App\Models\BoardMember;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\DB;
 
 class BoardController extends Controller
 {
@@ -35,14 +37,28 @@ class BoardController extends Controller
 
         $validated = $request->validated();
 
-        $board = Board::create([
-            'title' => $validated['title'],
-        ]);
-        BoardMember::create([
-            'board_id' => $board->id,
-            'user_id' => $request->user()->id,
-            'role' => BoardMemberRole::OWNER,
-        ]);
+        $board = DB::transaction(function () use ($request, $validated) {
+            $board = Board::create([
+                'title' => $validated['title'],
+            ]);
+
+            BoardMember::create([
+                'board_id' => $board->id,
+                'user_id' => $request->user()->id,
+                'role' => BoardMemberRole::OWNER,
+            ]);
+
+            $defaultCategories = (array) explode(',', env('DEFAULT_BOARD_CATEGORIES'));
+            foreach ($defaultCategories as $index => $category) {
+                BoardCategory::create([
+                    'board_id' => $board->id,
+                    'name' => str_replace('_', ' ', $category),
+                    'position' => $index,
+                ]);
+            }
+
+            return $board;
+        });
 
         return new BoardResource($board);
     }

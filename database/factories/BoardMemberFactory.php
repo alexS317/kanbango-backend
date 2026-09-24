@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\BoardMemberRole;
 use App\Models\Board;
 use App\Models\BoardMember;
 use App\Models\User;
@@ -22,7 +23,9 @@ class BoardMemberFactory extends Factory
         return [
             'board_id' => Board::factory(),
             'user_id' => User::factory(),
-            'role' => fake()->randomElement(['admin', 'editor', 'viewer']),
+            'role' => fake()->randomElement(
+                array_filter(BoardMemberRole::cases(), fn ($role) => $role !== BoardMemberRole::OWNER)
+            ),
         ];
     }
 }
