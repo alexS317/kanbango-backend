@@ -101,18 +101,23 @@ Make sure you have the following installed:
 
 ## Usage
 
-The project is a pure backend API and none of the frontend features included in Laravel (such as Blade templates) are used here. To test the API endpoints, a tool like Postman can be used. In this way you can for example register (which will at the current state of the project also log the user in at the same time), log in, or log out (for this step you have to copy the access token received during register/login and add it to the authorization header):
+The project is a pure backend API and none of the frontend features included in Laravel (such as Blade templates) are used here. When the development server is running, you can view the API documentation under: http://localhost:8000/docs/api
 
-<div align="center">
-  <img width="30%" src="_readme-screenshots/kanbango-be-1.webp" />
-  <img width="30%" src="_readme-screenshots/kanbango-be-2.webp" />
-  <img width="30%" src="_readme-screenshots/kanbango-be-3.webp" />
-</div>
+You can use a tool like Postman for testing. In the _readme-resources folder you find a JSON file that contains the configuration for the Postman collection, which you can import into your account.
 
-You can also seed the database to generate some pre-made entries to play around with. The following command will per default generate 5 users who may own one or more boards, and randomly assign them as members on other boards as well:
+You can either register a new user manually, or use the database seeder to generate some pre-made entries to play around with. The following command will per default generate 5 users who may own one or more boards, and randomly assign them as members on other boards as well:
 ```sh
    php artisan db:seed
 ```
+
+To authorize your user, you copy the access_token value (which you'll receive in the response body after registering or logging in) into the Token field on the collection's authorization tab. In this way, you won't have to manually add the authorization header on every request.
+
+As an authorized user, you are able to perform different actions:
+- Create, edit or delete your own boards
+- On boards you own: create new board categories, edit or delete existing ones
+- On boards where you are either owner or admin: invite new members per email, change the role of existing members or remove members
+
+For testing email invitations, you can use a tool like Mailpit. Please note that the link to join the board that's currently being generated won't work yet. Instead you may want to just copy the token value and insert it into the request in Postman.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
