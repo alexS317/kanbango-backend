@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\V1\BoardCategoryController as V1BoardCategoryContro
 use App\Http\Controllers\Api\V1\BoardController as V1BoardController;
 use App\Http\Controllers\Api\V1\BoardInvitationController as V1BoardInvitationController;
 use App\Http\Controllers\Api\V1\BoardMemberController as V1BoardMemberController;
+use App\Http\Controllers\Api\V1\TaskController as V1TaskController;
 use Illuminate\Support\Facades\Route;
 
 // API V1
@@ -26,10 +27,16 @@ Route::prefix('v1')->group(function () {
 
     Route::middleware('auth:sanctum')->group(function () {
         Route::apiResource('boards', V1BoardController::class);
+
         Route::apiResource('boards.members', V1BoardMemberController::class)->except(['store']);
         Route::patch('/boards/{board}/members/{member}/transfer-ownerrole', [V1BoardMemberController::class, 'transferOwnerRole'])->name('boards.members.transfer-ownerrole');
+
         Route::apiResource('boards.categories', V1BoardCategoryController::class);
         Route::patch('/boards/{board}/categories/{category}/reorder', [V1BoardCategoryController::class, 'reorder'])->name('boards.categories.reorder');
+
+        Route::get('/user/tasks', [V1TaskController::class, 'indexOwn'])->name('user.tasks');
+        Route::apiResource('boards.tasks', V1TaskController::class);
+        Route::patch('boards/{board}/tasks/{task}/change-status', [V1TaskController::class, 'changeStatus'])->name('boards.tasks.change-status');
 
         // Board member invitation routes
         Route::post('/boards/{board}/invite', [V1BoardInvitationController::class, 'invite'])->name('invitations.invite');

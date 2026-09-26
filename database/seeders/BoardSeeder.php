@@ -24,14 +24,14 @@ class BoardSeeder extends Seeder
             for ($i = 0; $i < $boardCount; $i++) {
                 $board = Board::factory()->create();
 
-                BoardMember::factory()->recycle($board)->recycle($user)->create([
+                BoardMember::factory()->recycle([$board, $user])->create([
                     'role' => BoardMemberRole::OWNER,
                 ]);
 
                 $otherUsers = $users->where('id', '!=', $user->id)->shuffle()->take(rand(0, 3));
 
                 foreach ($otherUsers as $otherUser) {
-                    BoardMember::factory()->recycle($board)->recycle($otherUser)->create();
+                    BoardMember::factory()->recycle([$board, $otherUser])->create();
                 }
 
                 $defaultCategories = (array) explode(',', env('DEFAULT_BOARD_CATEGORIES'));

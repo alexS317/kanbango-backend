@@ -23,7 +23,7 @@ class BoardCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|max:255',
+            'name' => 'nullable|string|max:255',
         ];
     }
 }

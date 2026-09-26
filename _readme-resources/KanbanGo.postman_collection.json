@@ -30,15 +30,11 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8000/api/v1/register",
-              "protocol": "http",
+              "raw": "{{base_url}}/register",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "register"
               ]
             }
@@ -57,7 +53,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"hello@example.net\",\r\n    \"password\": \"password\"\r\n}",
+              "raw": "{\r\n    \"email\": \"wkerluke@example.org\",\r\n    \"password\": \"password\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -65,15 +61,11 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8000/api/v1/login",
-              "protocol": "http",
+              "raw": "{{base_url}}/login",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "login"
               ]
             }
@@ -95,15 +87,11 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8000/api/v1/logout",
-              "protocol": "http",
+              "raw": "{{base_url}}/logout",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "logout"
               ]
             }
@@ -116,38 +104,53 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8000/api/v1/logout/all",
-              "protocol": "http",
+              "raw": "{{base_url}}/logout/all",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "logout",
                 "all"
               ]
             }
           },
           "response": []
-        },
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "item": [
         {
           "name": "user",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8000/api/v1/user",
-              "protocol": "http",
+              "raw": "{{base_url}}/user",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user/tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "user",
+                "tasks"
               ]
             }
           },
@@ -159,329 +162,16 @@
       "name": "boards",
       "item": [
         {
-          "name": "boardMembers",
-          "item": [
-            {
-              "name": "boards/{id}/members",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/2/members",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "2",
-                    "members"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "boards/{id}/members/{id}",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/3/members/8",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "3",
-                    "members",
-                    "8"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "boards/{id}/members/{id}",
-              "request": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"role\": \"admin\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/6/members/12",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "6",
-                    "members",
-                    "12"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "boards/{id}/members/{id}/transfer-ownerrole",
-              "request": {
-                "method": "PATCH",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/1/members/3/transfer-ownerrole",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "1",
-                    "members",
-                    "3",
-                    "transfer-ownerrole"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "boards/{id}/members/{id}",
-              "request": {
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/3/members/8",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "3",
-                    "members",
-                    "8"
-                  ]
-                }
-              },
-              "response": []
-            }
-          ]
-        },
-        {
-          "name": "boardCategories",
-          "item": [
-            {
-              "name": "boards/{id}/categories",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/6/categories",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "6",
-                    "categories"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "boards/{id}/categories/{id}",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/3/categories/25",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "3",
-                    "categories",
-                    "25"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "boards/{id}/categories",
-              "request": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"name\": \"Testing\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/6/categories",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "6",
-                    "categories"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "boards/{id}/categories/{id}",
-              "request": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"name\": \"In Testing\"\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/2/categories/17",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "2",
-                    "categories",
-                    "17"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "boards/{id}/categories/{id}/reorder",
-              "request": {
-                "method": "PATCH",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\r\n    \"position\": 2\r\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/6/categories/26/reorder",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "6",
-                    "categories",
-                    "26",
-                    "reorder"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "boards/{id}/categories/{id}",
-              "request": {
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "http://localhost:8000/api/v1/boards/3/categories/29",
-                  "protocol": "http",
-                  "host": [
-                    "localhost"
-                  ],
-                  "port": "8000",
-                  "path": [
-                    "api",
-                    "v1",
-                    "boards",
-                    "3",
-                    "categories",
-                    "29"
-                  ]
-                }
-              },
-              "response": []
-            }
-          ]
-        },
-        {
           "name": "boards",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8000/api/v1/boards",
-              "protocol": "http",
+              "raw": "{{base_url}}/boards",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "boards"
               ]
             }
@@ -494,17 +184,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8000/api/v1/boards/2",
-              "protocol": "http",
+              "raw": "{{base_url}}/boards/{{board_id}}",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "boards",
-                "2"
+                "{{board_id}}"
               ]
             }
           },
@@ -525,15 +211,11 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8000/api/v1/boards",
-              "protocol": "http",
+              "raw": "{{base_url}}/boards",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "boards"
               ]
             }
@@ -555,17 +237,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8000/api/v1/boards/1",
-              "protocol": "http",
+              "raw": "{{base_url}}/boards/{{board_id}}",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "boards",
-                "1"
+                "{{board_id}}"
               ]
             }
           },
@@ -583,24 +261,20 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8000/api/v1/boards/5",
-              "protocol": "http",
+              "raw": "{{base_url}}/boards/{{board_id}}",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "boards",
-                "5"
+                "{{board_id}}"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "boards/{id}/invitations",
+          "name": "boards/{id}/invite",
           "request": {
             "method": "POST",
             "header": [],
@@ -614,17 +288,13 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8000/api/v1/boards/6/invite",
-              "protocol": "http",
+              "raw": "{{base_url}}/boards/{{board_id}}/invite",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "boards",
-                "6",
+                "{{board_id}}",
                 "invite"
               ]
             }
@@ -637,18 +307,430 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "http://localhost:8000/api/v1/invitations/tYiag7INO4r8E7lTY0dcpqt0iX98ZlsOz4D4NdCoK1VuIK02eRqSsTSRMZgsSkYC/accept",
-              "protocol": "http",
+              "raw": "{{base_url}}/invitations/{{invite_token}}/accept",
               "host": [
-                "localhost"
+                "{{base_url}}"
               ],
-              "port": "8000",
               "path": [
-                "api",
-                "v1",
                 "invitations",
-                "tYiag7INO4r8E7lTY0dcpqt0iX98ZlsOz4D4NdCoK1VuIK02eRqSsTSRMZgsSkYC",
+                "{{invite_token}}",
                 "accept"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "boardMembers",
+      "item": [
+        {
+          "name": "boards/{id}/members",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "members"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/members/{id}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/members/{{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "members",
+                "{{member_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/members/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"role\": \"admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/members/{{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "members",
+                "{{member_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/members/{id}/transfer-ownerrole",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/members/{{member_id}}/transfer-ownerrole",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "members",
+                "{{member_id}}",
+                "transfer-ownerrole"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/members/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/members/{{member_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "members",
+                "{{member_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "boardCategories",
+      "item": [
+        {
+          "name": "boards/{id}/categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/categories/{id}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/categories/{{category_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "categories",
+                "{{category_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/categories",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Testing\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "categories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/categories/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"In Testing\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/categories/{{category_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "categories",
+                "{{category_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/categories/{id}/reorder",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"position\": 2\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/categories/{{category_id}}/reorder",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "categories",
+                "{{category_id}}",
+                "reorder"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/categories/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/categories/{{category_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "categories",
+                "{{category_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "tasks",
+      "item": [
+        {
+          "name": "boards{id}/tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards{id}/tasks/{id}",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/tasks/{{task_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "tasks",
+                "{{task_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/tasks",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"assigned_to\": null,\r\n    \"title\": \"Test task 2\",\r\n    \"description\": \"Testing task creation\",\r\n    \"category_id\": null\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/tasks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "tasks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/tasks/{id}",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    // \"assigned_to\": 2,\r\n    \"description\": \"This is a new description.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/tasks/{{task_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "tasks",
+                "{{task_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/tasks/{id}/change-status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"category_id\": 24\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/tasks/{{task_id}}/change-status",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "tasks",
+                "{{task_id}}",
+                "change-status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "boards/{id}/tasks/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/boards/{{board_id}}/tasks/{{task_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "boards",
+                "{{board_id}}",
+                "tasks",
+                "{{task_id}}"
               ]
             }
           },
@@ -662,7 +744,7 @@
     "bearer": [
       {
         "key": "token",
-        "value": "",
+        "value": "{{auth_token}}",
         "type": "string"
       }
     ]
@@ -689,6 +771,36 @@
           ""
         ]
       }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api/v1"
+    },
+    {
+      "key": "auth_token",
+      "value": ""
+    },
+    {
+      "key": "board_id",
+      "value": ""
+    },
+    {
+      "key": "category_id",
+      "value": ""
+    },
+    {
+      "key": "member_id",
+      "value": ""
+    },
+    {
+      "key": "task_id",
+      "value": ""
+    },
+    {
+      "key": "invite_token",
+      "value": ""
     }
   ]
 }
